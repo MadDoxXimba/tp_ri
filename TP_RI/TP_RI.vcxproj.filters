@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers sources\include">
+      <UniqueIdentifier>{2dee5097-98a9-4d63-a439-96c795c3a9c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\include\mysql">
+      <UniqueIdentifier>{f244e4da-0970-44e4-8901-69a6c3ecdabf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\include\mysql\psi">
+      <UniqueIdentifier>{456f0f83-27f2-4d99-8f63-0590ead14bc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\data">
+      <UniqueIdentifier>{d2187f5b-3dd2-4520-bec0-13dcd6993ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\data\files">
+      <UniqueIdentifier>{03ed49ee-a8fd-4440-9104-82dbf7cdb23e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\http.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\index.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ThreadPool.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sources\http.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\index.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\mysql.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\params.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\socket.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\ThreadPool.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\big_endian.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\byte_order_generic.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\byte_order_generic_x86.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\byte_order_generic_x86_64.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\decimal.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\errmsg.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\keycache.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\little_endian.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\m_ctype.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\m_string.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_alloc.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_attribute.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_byteorder.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_compiler.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_config.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_dbug.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_dir.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_getopt.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_global.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_list.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_net.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_pthread.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_sys.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\my_xml.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql_com.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql_com_server.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql_embed.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql_time.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql_version.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysqld_ername.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysqld_error.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\sql_common.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\sql_state.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\sslopt-case.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\sslopt-longopts.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\sslopt-vars.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\typelib.h">
+      <Filter>Fichiers sources\include</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\client_authentication.h">
+      <Filter>Fichiers sources\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\client_plugin.h">
+      <Filter>Fichiers sources\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\get_password.h">
+      <Filter>Fichiers sources\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\plugin_auth_common.h">
+      <Filter>Fichiers sources\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\plugin_trace.h">
+      <Filter>Fichiers sources\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\service_mysql_alloc.h">
+      <Filter>Fichiers sources\include\mysql</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_file.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_idle.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_mdl.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_memory.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_socket.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_sp.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_stage.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_statement.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_table.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_thread.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\mysql_transaction.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\psi.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\psi_base.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\include\mysql\psi\psi_memory.h">
+      <Filter>Fichiers sources\include\mysql\psi</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sources\include\mysql\client_plugin.h.pp">
+      <Filter>Fichiers sources\include\mysql</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Données\data\links.txt">
+      <Filter>Fichiers sources\data</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\0.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\1.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\2.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\3.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\4.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\5.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\6.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\7.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\8.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\9.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\10.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\11.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\12.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\13.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\14.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\15.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\16.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\17.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\18.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\19.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\20.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\21.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\22.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\23.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\24.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\25.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\26.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\27.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\28.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\29.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\30.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\31.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\32.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\33.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\34.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\35.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\36.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\37.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="..\Données\data\files\38.txt">
+      <Filter>Fichiers sources\data\files</Filter>
+    </Text>
+    <Text Include="config.txt">
+      <Filter>Fichiers sources</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

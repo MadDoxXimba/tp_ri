@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2B0590A7-0D16-4404-B8D9-0D655F308855}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>TP_RI</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\E149268Y.PEDAGOGIE\Desktop\TP_RI\TP_RI\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\http.cpp" />
+    <ClCompile Include="sources\index.cpp" />
+    <ClCompile Include="sources\main.cpp" />
+    <ClCompile Include="sources\ThreadPool.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sources\http.h" />
+    <ClInclude Include="sources\include\big_endian.h" />
+    <ClInclude Include="sources\include\byte_order_generic.h" />
+    <ClInclude Include="sources\include\byte_order_generic_x86.h" />
+    <ClInclude Include="sources\include\byte_order_generic_x86_64.h" />
+    <ClInclude Include="sources\include\decimal.h" />
+    <ClInclude Include="sources\include\errmsg.h" />
+    <ClInclude Include="sources\include\keycache.h" />
+    <ClInclude Include="sources\include\little_endian.h" />
+    <ClInclude Include="sources\include\mysql.h" />
+    <ClInclude Include="sources\include\mysqld_ername.h" />
+    <ClInclude Include="sources\include\mysqld_error.h" />
+    <ClInclude Include="sources\include\mysql\client_authentication.h" />
+    <ClInclude Include="sources\include\mysql\client_plugin.h" />
+    <ClInclude Include="sources\include\mysql\get_password.h" />
+    <ClInclude Include="sources\include\mysql\plugin_auth_common.h" />
+    <ClInclude Include="sources\include\mysql\plugin_trace.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_file.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_idle.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_mdl.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_memory.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_socket.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_sp.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_stage.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_statement.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_table.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_thread.h" />
+    <ClInclude Include="sources\include\mysql\psi\mysql_transaction.h" />
+    <ClInclude Include="sources\include\mysql\psi\psi.h" />
+    <ClInclude Include="sources\include\mysql\psi\psi_base.h" />
+    <ClInclude Include="sources\include\mysql\psi\psi_memory.h" />
+    <ClInclude Include="sources\include\mysql\service_mysql_alloc.h" />
+    <ClInclude Include="sources\include\mysql_com.h" />
+    <ClInclude Include="sources\include\mysql_com_server.h" />
+    <ClInclude Include="sources\include\mysql_embed.h" />
+    <ClInclude Include="sources\include\mysql_time.h" />
+    <ClInclude Include="sources\include\mysql_version.h" />
+    <ClInclude Include="sources\include\my_alloc.h" />
+    <ClInclude Include="sources\include\my_attribute.h" />
+    <ClInclude Include="sources\include\my_byteorder.h" />
+    <ClInclude Include="sources\include\my_compiler.h" />
+    <ClInclude Include="sources\include\my_config.h" />
+    <ClInclude Include="sources\include\my_dbug.h" />
+    <ClInclude Include="sources\include\my_dir.h" />
+    <ClInclude Include="sources\include\my_getopt.h" />
+    <ClInclude Include="sources\include\my_global.h" />
+    <ClInclude Include="sources\include\my_list.h" />
+    <ClInclude Include="sources\include\my_net.h" />
+    <ClInclude Include="sources\include\my_pthread.h" />
+    <ClInclude Include="sources\include\my_sys.h" />
+    <ClInclude Include="sources\include\my_xml.h" />
+    <ClInclude Include="sources\include\m_ctype.h" />
+    <ClInclude Include="sources\include\m_string.h" />
+    <ClInclude Include="sources\include\sql_common.h" />
+    <ClInclude Include="sources\include\sql_state.h" />
+    <ClInclude Include="sources\include\sslopt-case.h" />
+    <ClInclude Include="sources\include\sslopt-longopts.h" />
+    <ClInclude Include="sources\include\sslopt-vars.h" />
+    <ClInclude Include="sources\include\typelib.h" />
+    <ClInclude Include="sources\index.h" />
+    <ClInclude Include="sources\mysql.h" />
+    <ClInclude Include="sources\params.h" />
+    <ClInclude Include="sources\socket.h" />
+    <ClInclude Include="sources\ThreadPool.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sources\include\mysql\client_plugin.h.pp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Données\data\files\0.txt" />
+    <Text Include="..\Données\data\files\1.txt" />
+    <Text Include="..\Données\data\files\10.txt" />
+    <Text Include="..\Données\data\files\11.txt" />
+    <Text Include="..\Données\data\files\12.txt" />
+    <Text Include="..\Données\data\files\13.txt" />
+    <Text Include="..\Données\data\files\14.txt" />
+    <Text Include="..\Données\data\files\15.txt" />
+    <Text Include="..\Données\data\files\16.txt" />
+    <Text Include="..\Données\data\files\17.txt" />
+    <Text Include="..\Données\data\files\18.txt" />
+    <Text Include="..\Données\data\files\19.txt" />
+    <Text Include="..\Données\data\files\2.txt" />
+    <Text Include="..\Données\data\files\20.txt" />
+    <Text Include="..\Données\data\files\21.txt" />
+    <Text Include="..\Données\data\files\22.txt" />
+    <Text Include="..\Données\data\files\23.txt" />
+    <Text Include="..\Données\data\files\24.txt" />
+    <Text Include="..\Données\data\files\25.txt" />
+    <Text Include="..\Données\data\files\26.txt" />
+    <Text Include="..\Données\data\files\27.txt" />
+    <Text Include="..\Données\data\files\28.txt" />
+    <Text Include="..\Données\data\files\29.txt" />
+    <Text Include="..\Données\data\files\3.txt" />
+    <Text Include="..\Données\data\files\30.txt" />
+    <Text Include="..\Données\data\files\31.txt" />
+    <Text Include="..\Données\data\files\32.txt" />
+    <Text Include="..\Données\data\files\33.txt" />
+    <Text Include="..\Données\data\files\34.txt" />
+    <Text Include="..\Données\data\files\35.txt" />
+    <Text Include="..\Données\data\files\36.txt" />
+    <Text Include="..\Données\data\files\37.txt" />
+    <Text Include="..\Données\data\files\38.txt" />
+    <Text Include="..\Données\data\files\4.txt" />
+    <Text Include="..\Données\data\files\5.txt" />
+    <Text Include="..\Données\data\files\6.txt" />
+    <Text Include="..\Données\data\files\7.txt" />
+    <Text Include="..\Données\data\files\8.txt" />
+    <Text Include="..\Données\data\files\9.txt" />
+    <Text Include="..\Données\data\links.txt" />
+    <Text Include="config.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
