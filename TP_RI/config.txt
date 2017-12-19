@@ -1,5 +1,5 @@
-ServerName=127.0.0.1
-Login=root
-Password=
-SchemeName=test
-Basefiles=test
+jyc.northeurope.cloudapp.azure.com
+root
+root
+tp_ri
+..\Données\data\files

@@ -18,6 +18,7 @@ void IndexData()
 	//listOfInputArc(0, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
 	//debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
 	conn = mysql_init(conn);
+	
 	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
 	{
 		std::vector<std::string> tables = { "word_page","page","word" };
