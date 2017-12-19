@@ -22,15 +22,13 @@ void IndexData()
 	//std::cout << calculateOutputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
 	//listOfInputArc(0, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
 	//debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
-	
-
 
 	conn = mysql_init(conn);
 	
 	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
 	{
 		std::vector<std::string> tables = { "word_page","page","word" };
-		insertWordsInDB("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
+		readOneWordinFile("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
 		for (auto &table : tables)
 		{
 			std::string sql = "TRUNCATE TABLE `";
@@ -39,7 +37,10 @@ void IndexData()
 			if (!mysql_query(conn, sql.c_str())) std::cout << "Empty table '" << table << "'" << std::endl;
 			else std::cerr << mysql_error(conn) << std::endl;
 		}
+		
+		//SELECT p.url, p.resume, p.pr FROM page as p LEFT JOIN word_page wp1 on wp1.id_page = p.id_page LEFT join word w1 on w1.id_word = wp1.id_word LEFT join word_page wp2 on wp2.id_page = p.id_page LEFT join word w2 on w2.id_word = wp2.id_word LEFT join word_page wp3 on wp3.id_page = p.id_page LEFT join word w3 on w3.id_word = wp3.id_word WHERE w1.word='page' AND w2.word='group' AND w3.word='models' ORDER BY pr DESC;
 
+		
 		//TODO: à vous de jouer ...
 
 		mysql_close(conn);
@@ -245,13 +246,13 @@ void debugVector_pair(std::vector<std::pair<int, float>> toPrint)
 	}
 }
 
-void insertWordsInDB(std::string pathBase)
+void readOneWordinFile(std::string pathBase)
 {
 	std::string links = pathBase + "\\links.txt";
 	std::string filesDirectory = pathBase + "\\files\\";
 	
 	int numberOfFiles = getLinks(links).size();
-
+	int dbID = 0;
 	for (int currentFile = 0; currentFile < numberOfFiles; currentFile++)
 	{
 		std::string file = filesDirectory + std::to_string(currentFile) + ".txt";
@@ -261,7 +262,7 @@ void insertWordsInDB(std::string pathBase)
 		std::ifstream infile;
 
 		std::string currentWord = "";
-
+		
 		infile.open(file);
 		while (!infile.eof())
 		{
@@ -271,17 +272,20 @@ void insertWordsInDB(std::string pathBase)
 			{
 				if ((STRING[i] >= '0' && STRING[i] <= '9') || (STRING[i] >= 'a' && STRING[i] <= 'z') || (STRING[i] >= 'A' && STRING[i] <= 'Z'))
 				{	
-					currentWord += STRING[i];	
+					currentWord += STRING[i];
 				}
 				else
 				{
-					std::cout << currentWord << std::endl;
+					if (!currentWord.empty())
+					{
+						std::cout << currentWord << std::endl;
 
-					//insertion dans la base sql
-
-					currentWord = "";
-
-
+						//insertion dans la base sql
+						insertInTableWord(currentWord, dbID);
+						insertInTableWordPage(currentWord, currentFile);
+						currentWord = "";
+						dbID++;
+					}
 				}
 			}
 
@@ -292,4 +296,48 @@ void insertWordsInDB(std::string pathBase)
 	}
 
 	
+}
+
+void insertInTableWord(std::string word, int index)
+{
+	MYSQL *conn = nullptr;
+	conn = mysql_init(conn);
+	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
+	{
+		std::string sql = "INSERT INTO `word` VALUES(";
+		sql += std::to_string(index);
+		sql += ",'";
+		sql += word;
+		sql += "')";
+		std::cout << sql << std::endl;
+		if (!mysql_query(conn, sql.c_str())) std::cout << "Insertion dans la table page" << std::endl;
+		else std::cerr << mysql_error(conn) << std::endl;
+		mysql_close(conn);
+	}
+	else
+	{
+		std::cerr << mysql_error(conn) << std::endl;
+	}
+}
+
+void insertInTableWordPage(std::string word, int page_id)
+{
+	MYSQL *conn = nullptr;
+	conn = mysql_init(conn);
+	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
+	{
+		std::string sql = "INSERT INTO `word_page` VALUES(";
+		sql += std::to_string(page_id);
+		sql += ",'";
+		sql += word;
+		sql += "')";
+		std::cout << sql << std::endl;
+		if (!mysql_query(conn, sql.c_str())) std::cout << "Insertion dans la table page_word" << std::endl;
+		else std::cerr << mysql_error(conn) << std::endl;
+		mysql_close(conn);
+	}
+	else
+	{
+		std::cerr << mysql_error(conn) << std::endl;
+	}
 }

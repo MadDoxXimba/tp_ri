@@ -37,4 +37,8 @@ void debugMatrix_f(std::vector<std::vector<float>> toPrint);
 
 void debugVector_pair(std::vector<std::pair<int, float>> toPrint);
 
-void insertWordsInDB(std::string pathBase);
+void readOneWordinFile(std::string pathBase);
+
+void insertInTableWord(std::string word, int index);
+
+void insertInTableWordPage(std::string word, int page_id);
