@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include <string>
 #include <iostream>
 #include <vector>
@@ -6,23 +7,30 @@
 #include "index.h"
 #include <fstream>
 #include<algorithm>
+#include <windows.h>
+#include <tchar.h>
+#include <stdio.h>
 extern ParamIndex params;
+
 
 void IndexData()
 {
 	MYSQL *conn = nullptr;
-
+	
 	//debugMatrix(getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
 	//std::cout << calculateInputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
 	//std::cout << calculateOutputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
 	//listOfInputArc(0, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
 	//debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
+	
+
+
 	conn = mysql_init(conn);
 	
 	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
 	{
 		std::vector<std::string> tables = { "word_page","page","word" };
-
+		insertWordsInDB("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
 		for (auto &table : tables)
 		{
 			std::string sql = "TRUNCATE TABLE `";
@@ -38,6 +46,7 @@ void IndexData()
 	}
 	else std::cerr << mysql_error(conn) << std::endl;
 }
+
 
 std::vector<std::vector<int>> getLinks(std::string path)
 {
@@ -234,4 +243,53 @@ void debugVector_pair(std::vector<std::pair<int, float>> toPrint)
 	{
 		std::cout << it->first << " " << it->second << " " << std::endl;
 	}
+}
+
+void insertWordsInDB(std::string pathBase)
+{
+	std::string links = pathBase + "\\links.txt";
+	std::string filesDirectory = pathBase + "\\files\\";
+	
+	int numberOfFiles = getLinks(links).size();
+
+	for (int currentFile = 0; currentFile < numberOfFiles; currentFile++)
+	{
+		std::string file = filesDirectory + std::to_string(currentFile) + ".txt";
+		//std::cout << currentFile << std::endl;
+		//std::cout << "-------------------------------------------------------------" << std::endl;
+		std::string STRING;
+		std::ifstream infile;
+
+		std::string currentWord = "";
+
+		infile.open(file);
+		while (!infile.eof())
+		{
+			getline(infile, STRING);
+			
+			for (int i = 0; i < STRING.size(); i++)
+			{
+				if ((STRING[i] >= '0' && STRING[i] <= '9') || (STRING[i] >= 'a' && STRING[i] <= 'z') || (STRING[i] >= 'A' && STRING[i] <= 'Z'))
+				{	
+					currentWord += STRING[i];	
+				}
+				else
+				{
+					std::cout << currentWord << std::endl;
+
+					//insertion dans la base sql
+
+					currentWord = "";
+
+
+				}
+			}
+
+		}
+		infile.close();
+		//std::cout << std::endl;
+		//std::cout << "-------------------------------------------------------------" << std::endl;
+	}
+
+	
 }

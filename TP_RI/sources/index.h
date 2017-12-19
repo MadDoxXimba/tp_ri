@@ -36,3 +36,5 @@ void debugMatrix(std::vector<std::vector<int>> toPrint);
 void debugMatrix_f(std::vector<std::vector<float>> toPrint);
 
 void debugVector_pair(std::vector<std::pair<int, float>> toPrint);
+
+void insertWordsInDB(std::string pathBase);
