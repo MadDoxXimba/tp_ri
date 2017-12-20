@@ -41,4 +41,4 @@ void readOneWordinFile(std::string pathBase);
 
 void insertInTableWord(std::string word, int index);
 
-void insertInTableWordPage(std::string word, int page_id);
+void insertInTableWordPage(int id_word, int page_id);

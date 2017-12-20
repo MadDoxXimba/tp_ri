@@ -28,7 +28,7 @@ void IndexData()
 	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
 	{
 		std::vector<std::string> tables = { "word_page","page","word" };
-		readOneWordinFile("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
+		//readOneWordinFile("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
 		for (auto &table : tables)
 		{
 			std::string sql = "TRUNCATE TABLE `";
@@ -149,6 +149,7 @@ std::vector<std::vector<float>> getPageRank(int numOfIterations, std::vector<std
 		return result;
 	}
 }
+
 
 bool compare(const std::pair<int, float>& i, const std::pair<int, float>& j)
 {
@@ -282,7 +283,7 @@ void readOneWordinFile(std::string pathBase)
 
 						//insertion dans la base sql
 						insertInTableWord(currentWord, dbID);
-						insertInTableWordPage(currentWord, currentFile);
+						insertInTableWordPage(currentFile, dbID);
 						currentWord = "";
 						dbID++;
 					}
@@ -320,16 +321,16 @@ void insertInTableWord(std::string word, int index)
 	}
 }
 
-void insertInTableWordPage(std::string word, int page_id)
+void insertInTableWordPage(int id_word, int page_id)
 {
 	MYSQL *conn = nullptr;
 	conn = mysql_init(conn);
 	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
 	{
 		std::string sql = "INSERT INTO `word_page` VALUES(";
-		sql += std::to_string(page_id);
+		sql += std::to_string(id_word);
 		sql += ",'";
-		sql += word;
+		sql += std::to_string(page_id);
 		sql += "')";
 		std::cout << sql << std::endl;
 		if (!mysql_query(conn, sql.c_str())) std::cout << "Insertion dans la table page_word" << std::endl;
