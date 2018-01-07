@@ -28,7 +28,7 @@ void IndexData()
 	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
 	{
 		std::vector<std::string> tables = { "word_page","page","word" };
-		//readOneWordinFile("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
+		
 		for (auto &table : tables)
 		{
 			std::string sql = "TRUNCATE TABLE `";
@@ -40,8 +40,8 @@ void IndexData()
 		
 		//SELECT p.url, p.resume, p.pr FROM page as p LEFT JOIN word_page wp1 on wp1.id_page = p.id_page LEFT join word w1 on w1.id_word = wp1.id_word LEFT join word_page wp2 on wp2.id_page = p.id_page LEFT join word w2 on w2.id_word = wp2.id_word LEFT join word_page wp3 on wp3.id_page = p.id_page LEFT join word w3 on w3.id_word = wp3.id_word WHERE w1.word='page' AND w2.word='group' AND w3.word='models' ORDER BY pr DESC;
 
+		readOneWordinFile("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
 		
-		//TODO: à vous de jouer ...
 
 		mysql_close(conn);
 	}
@@ -247,13 +247,87 @@ void debugVector_pair(std::vector<std::pair<int, float>> toPrint)
 	}
 }
 
+bool checkIfExistWord(std::string word)
+{
+	//SELECT COUNT(`word`) FROM `word` WHERE `word` = 'test'
+
+	MYSQL *conn = nullptr;
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	conn = mysql_init(conn);
+	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
+	{
+		std::string sql = "SELECT COUNT(`word`) FROM `word` WHERE `word` = '";
+		sql += word;
+		sql += "'";
+		if (!mysql_query(conn, sql.c_str())) 
+		{
+			result = mysql_store_result(conn);
+			while ((row = mysql_fetch_row(result)) != NULL) 
+			{
+				if (atoi(row[0]) == 1)
+				{
+					//std::cout << row[0] << " : testing word" << std::endl;
+					mysql_free_result(result);
+					return 1;
+				}
+			}
+			//std::cout << row[0] << std::endl;
+		}
+		else std::cerr << mysql_error(conn) << std::endl;
+		mysql_close(conn);
+	}
+	else
+	{
+		std::cerr << mysql_error(conn) << std::endl;
+	}
+	return 0;
+}
+
+bool checkIfExistWordPage(int word_id, int page_id)
+{
+	MYSQL *conn = nullptr;
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	conn = mysql_init(conn);
+	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
+	{
+		//SELECT COUNT(`id_word`) FROM `word_page` WHERE `id_word` = 0 AND `id_page` = 1
+		std::string sql = "SELECT COUNT(`id_word`) FROM `word_page` WHERE `id_word` = ";
+		sql += std::to_string(word_id);
+		sql += " AND `id_page` = ";
+		sql += std::to_string(page_id);
+		if (!mysql_query(conn, sql.c_str()))
+		{
+			result = mysql_store_result(conn);
+			while ((row = mysql_fetch_row(result)) != NULL)
+			{
+				if (atoi(row[0]) == 1)
+				{
+					//std::cout << row[0] << " : testing word" << std::endl;
+					mysql_free_result(result);
+					return 1;
+				}
+			}
+			//std::cout << row[0] << std::endl;
+		}
+		else std::cerr << mysql_error(conn) << std::endl;
+		mysql_close(conn);
+	}
+	else
+	{
+		std::cerr << mysql_error(conn) << std::endl;
+	}
+	return 0;
+}
+
 void readOneWordinFile(std::string pathBase)
 {
 	std::string links = pathBase + "\\links.txt";
 	std::string filesDirectory = pathBase + "\\files\\";
 	
 	int numberOfFiles = getLinks(links).size();
-	int dbID = 0;
+	int dbID = 1;
 	for (int currentFile = 0; currentFile < numberOfFiles; currentFile++)
 	{
 		std::string file = filesDirectory + std::to_string(currentFile) + ".txt";
@@ -279,13 +353,22 @@ void readOneWordinFile(std::string pathBase)
 				{
 					if (!currentWord.empty())
 					{
-						std::cout << currentWord << std::endl;
+						//std::cout << currentWord << std::endl;
 
 						//insertion dans la base sql
-						insertInTableWord(currentWord, dbID);
-						insertInTableWordPage(currentFile, dbID);
+
+						if (!checkIfExistWord(currentWord))
+						{
+							insertInTableWord(currentWord, dbID);
+						}
+						if (!checkIfExistWordPage(dbID, currentFile))
+						{
+							insertInTableWordPage(currentFile, dbID);
+						}
 						currentWord = "";
+						std::cout << dbID << std::endl;
 						dbID++;
+						std::cout << dbID << std::endl;
 					}
 				}
 			}
@@ -341,4 +424,9 @@ void insertInTableWordPage(int id_word, int page_id)
 	{
 		std::cerr << mysql_error(conn) << std::endl;
 	}
+}
+
+void insertInTablePage(int page_id, std::string summary, int pr)
+{
+
 }

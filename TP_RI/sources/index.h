@@ -42,3 +42,10 @@ void readOneWordinFile(std::string pathBase);
 void insertInTableWord(std::string word, int index);
 
 void insertInTableWordPage(int id_word, int page_id);
+
+void insertInTablePage(int page_id, std::string summary, int pr);
+
+/*Returns 1 if exist and 0 if not exist*/
+bool checkIfExistWord(std::string word);
+
+bool checkIfExistWordPage(int word_id, int page_id);
