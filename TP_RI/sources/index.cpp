@@ -21,6 +21,7 @@ void IndexData()
 	//std::cout << calculateInputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
 	//std::cout << calculateOutputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
 	//listOfInputArc(0, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
+	//debugMatrix_f(getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")));
 	//debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
 
 	conn = mysql_init(conn);
@@ -326,6 +327,7 @@ void readOneWordinFile(std::string pathBase)
 	std::string links = pathBase + "\\links.txt";
 	std::string filesDirectory = pathBase + "\\files\\";
 	
+	std::vector<std::pair<int, float>> pageRanks = getRankings(5, getPageRank(10, getLinks(links)));
 	int numberOfFiles = getLinks(links).size();
 	int dbID = 1;
 	for (int currentFile = 0; currentFile < numberOfFiles; currentFile++)
@@ -337,7 +339,8 @@ void readOneWordinFile(std::string pathBase)
 		std::ifstream infile;
 
 		std::string currentWord = "";
-		
+		std::string summary = "";
+
 		infile.open(file);
 		while (!infile.eof())
 		{
@@ -345,6 +348,10 @@ void readOneWordinFile(std::string pathBase)
 			
 			for (int i = 0; i < STRING.size(); i++)
 			{
+				if (i < 49)
+				{
+					summary += STRING[i];
+				}
 				if ((STRING[i] >= '0' && STRING[i] <= '9') || (STRING[i] >= 'a' && STRING[i] <= 'z') || (STRING[i] >= 'A' && STRING[i] <= 'Z'))
 				{	
 					currentWord += STRING[i];
@@ -363,18 +370,24 @@ void readOneWordinFile(std::string pathBase)
 						}
 						if (!checkIfExistWordPage(dbID, currentFile))
 						{
-							insertInTableWordPage(currentFile, dbID);
+							insertInTableWordPage(dbID, currentFile);
 						}
 						currentWord = "";
-						std::cout << dbID << std::endl;
 						dbID++;
-						std::cout << dbID << std::endl;
 					}
 				}
 			}
-
 		}
 		infile.close();
+		for (std::vector<std::pair<int, float>>::iterator it = pageRanks.begin(); it < pageRanks.end(); it++)
+		{
+			if (it->first == currentFile)
+			{
+				float pr = it->second;
+				insertInTablePage(currentFile, file, summary, pr);
+				summary = "";
+			}
+		}
 		//std::cout << std::endl;
 		//std::cout << "-------------------------------------------------------------" << std::endl;
 	}
@@ -426,7 +439,29 @@ void insertInTableWordPage(int id_word, int page_id)
 	}
 }
 
-void insertInTablePage(int page_id, std::string summary, int pr)
+void insertInTablePage(int page_id, std::string url, std::string summary, int pr)
 {
-
+	MYSQL *conn = nullptr;
+	conn = mysql_init(conn);
+	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
+	{
+		//INSERT INTO `page`(`id_page`, `url`, `pr`, `resume`) VALUES (0,'c:\Users\Jonathan\Desktop\TP_RI\DonnÚes\data\\files\0',1.00, 'Networks & New Technologies Research group')
+		std::string sql = "INSERT INTO `page`(`id_page`, `url`, `pr`, `resume`) VALUES (";
+		sql += std::to_string(page_id);
+		sql += ",'";
+		sql += url;
+		sql += "',";
+		sql += std::to_string(pr);	
+		sql += ",'";
+		sql += summary;
+		sql += "')";
+		std::cout << sql << std::endl;
+		if (!mysql_query(conn, sql.c_str())) std::cout << "Insertion dans la table page_word" << std::endl;
+		else std::cerr << mysql_error(conn) << std::endl;
+		mysql_close(conn);
+	}
+	else
+	{
+		std::cerr << mysql_error(conn) << std::endl;
+	}
 }
