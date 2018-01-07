@@ -16,7 +16,7 @@ extern ParamIndex params;
 void IndexData()
 {
 	MYSQL *conn = nullptr;
-	
+
 	//debugMatrix(getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
 	//std::cout << calculateInputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
 	//std::cout << calculateOutputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
@@ -25,11 +25,11 @@ void IndexData()
 	//debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
 
 	conn = mysql_init(conn);
-	
+
 	if (mysql_real_connect(conn, params.ServerName.c_str(), params.Login.c_str(), params.Password.c_str(), params.SchemeName.c_str(), 0, NULL, 0))
 	{
 		std::vector<std::string> tables = { "word_page","page","word" };
-		
+
 		for (auto &table : tables)
 		{
 			std::string sql = "TRUNCATE TABLE `";
@@ -38,11 +38,11 @@ void IndexData()
 			if (!mysql_query(conn, sql.c_str())) std::cout << "Empty table '" << table << "'" << std::endl;
 			else std::cerr << mysql_error(conn) << std::endl;
 		}
-		
+
 		//SELECT p.url, p.resume, p.pr FROM page as p LEFT JOIN word_page wp1 on wp1.id_page = p.id_page LEFT join word w1 on w1.id_word = wp1.id_word LEFT join word_page wp2 on wp2.id_page = p.id_page LEFT join word w2 on w2.id_word = wp2.id_word LEFT join word_page wp3 on wp3.id_page = p.id_page LEFT join word w3 on w3.id_word = wp3.id_word WHERE w1.word='page' AND w2.word='group' AND w3.word='models' ORDER BY pr DESC;
 
 		readOneWordinFile("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\");
-		
+
 
 		mysql_close(conn);
 	}
@@ -120,7 +120,7 @@ std::vector<std::vector<float>> getPageRank(int numOfIterations, std::vector<std
 
 			if (j == 0) result[i][j] += initialPageRank;
 		}
-		
+
 	}
 	if (numOfIterations < 1)
 	{
@@ -142,7 +142,7 @@ std::vector<std::vector<float>> getPageRank(int numOfIterations, std::vector<std
 					{
 						result[rowIndex][currentIteration] += result[listOfInputArcs[currOutgoinArc]][currentIteration - 1];
 					}
-					
+
 				}
 			}
 			numOfIteration--;
@@ -240,7 +240,7 @@ void debugMatrix_f(std::vector<std::vector<float>> toPrint)
 	}
 }
 
-void debugVector_pair(std::vector<std::pair<int, float>> toPrint) 
+void debugVector_pair(std::vector<std::pair<int, float>> toPrint)
 {
 	for (std::vector<std::pair<int, float>>::iterator it = toPrint.begin(); it < toPrint.end(); it++)
 	{
@@ -261,15 +261,16 @@ bool checkIfExistWord(std::string word)
 		std::string sql = "SELECT COUNT(`word`) FROM `word` WHERE `word` = '";
 		sql += word;
 		sql += "'";
-		if (!mysql_query(conn, sql.c_str())) 
+		if (!mysql_query(conn, sql.c_str()))
 		{
 			result = mysql_store_result(conn);
-			while ((row = mysql_fetch_row(result)) != NULL) 
+			while ((row = mysql_fetch_row(result)) != NULL)
 			{
 				if (atoi(row[0]) == 1)
 				{
 					//std::cout << row[0] << " : testing word" << std::endl;
 					mysql_free_result(result);
+					mysql_close(conn);
 					return 1;
 				}
 			}
@@ -307,6 +308,7 @@ bool checkIfExistWordPage(int word_id, int page_id)
 				{
 					//std::cout << row[0] << " : testing word" << std::endl;
 					mysql_free_result(result);
+					mysql_close(conn);
 					return 1;
 				}
 			}
@@ -326,7 +328,7 @@ void readOneWordinFile(std::string pathBase)
 {
 	std::string links = pathBase + "\\links.txt";
 	std::string filesDirectory = pathBase + "\\files\\";
-	
+
 	std::vector<std::pair<int, float>> pageRanks = getRankings(5, getPageRank(10, getLinks(links)));
 	int numberOfFiles = getLinks(links).size();
 	int dbID = 1;
@@ -345,7 +347,7 @@ void readOneWordinFile(std::string pathBase)
 		while (!infile.eof())
 		{
 			getline(infile, STRING);
-			
+
 			for (int i = 0; i < STRING.size(); i++)
 			{
 				if (i < 49)
@@ -353,7 +355,7 @@ void readOneWordinFile(std::string pathBase)
 					summary += STRING[i];
 				}
 				if ((STRING[i] >= '0' && STRING[i] <= '9') || (STRING[i] >= 'a' && STRING[i] <= 'z') || (STRING[i] >= 'A' && STRING[i] <= 'Z'))
-				{	
+				{
 					currentWord += STRING[i];
 				}
 				else
@@ -392,7 +394,7 @@ void readOneWordinFile(std::string pathBase)
 		//std::cout << "-------------------------------------------------------------" << std::endl;
 	}
 
-	
+
 }
 
 void insertInTableWord(std::string word, int index)
@@ -451,7 +453,7 @@ void insertInTablePage(int page_id, std::string url, std::string summary, int pr
 		sql += ",'";
 		sql += url;
 		sql += "',";
-		sql += std::to_string(pr);	
+		sql += std::to_string(pr);
 		sql += ",'";
 		sql += summary;
 		sql += "')";

@@ -10,7 +10,7 @@ c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(221): warning C4018: '<'
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(223): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(233): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(235): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(349): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(387): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(351): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(389): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
   TP_RI.vcxproj -> C:\Users\Jonathan\Desktop\tp_ri\Debug\TP_RI.exe
   TP_RI.vcxproj -> C:\Users\Jonathan\Desktop\tp_ri\Debug\TP_RI.pdb (Full PDB)
