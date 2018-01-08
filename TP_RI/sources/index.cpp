@@ -17,12 +17,23 @@ void IndexData()
 {
 	MYSQL *conn = nullptr;
 
-	//debugMatrix(getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
-	//std::cout << calculateInputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
-	//std::cout << calculateOutputArc(1, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")) << std::endl;
-	//listOfInputArc(0, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"));
-	//debugMatrix_f(getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")));
-	//debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
+	//debugMatrix(getLinks("C:\\Users\\E149268Y\\Desktop\\2018\\tp_ri-master\\Données\\data\\links.txt"));
+	//std::cout << calculateInputArc(1, getLinks("C:\\Users\\E149268Y\\Desktop\\2018\\tp_ri-master\\Données\\data\\links.txt")) << std::endl;
+	//std::cout << calculateOutputArc(1, getLinks("C:\\Users\\E149268Y\\Desktop\\2018\\tp_ri-master\\Données\\data\\links.txt")) << std::endl;
+	/*
+	for (int i = 0; i < 38; i++)
+	{
+	std::vector<int> arcs = listOfInputArc(i, getLinks("C:\\Users\\E149268Y\\Desktop\\2018\\tp_ri-master\\Données\\data\\links.txt"));
+	for (int j = 0; j < arcs.size(); j++)
+	{
+	std::cout << arcs[j] << " ";
+	}
+	std::cout << std::endl;
+	}
+	*/
+
+	//debugMatrix_f(getPageRank(10, getLinks("C:\\Users\\E149268Y\\Desktop\\2018\\tp_ri-master\\Données\\data\\links.txt")));
+	debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
 
 	conn = mysql_init(conn);
 
@@ -107,11 +118,8 @@ std::vector<std::vector<float>> getPageRank(int numOfIterations, std::vector<std
 {
 	std::vector<std::vector<float>> result(link.size(), std::vector<float>(numOfIterations));
 	//initialization memory
-	//result.resize(size);
 	float initialPageRank = float(1) / float(link.size());
-	//for (int i = 0; i < numOfIterations; i++) result[i].resize(numOfIterations);
-	//initalize pagerank values for each documents
-	//std::cout << result.size() << " " << result[0].size() << std::endl;
+
 	for (int i = 0; i < link.size(); i++)
 	{
 		for (int j = 0; j < numOfIterations; j++)
@@ -133,6 +141,8 @@ std::vector<std::vector<float>> getPageRank(int numOfIterations, std::vector<std
 		{
 			for (int rowIndex = 0; rowIndex < link.size(); rowIndex++)
 			{
+				float maxRow = 0;
+				float minRow = 0;
 				for (int currentIteration = 1; currentIteration < numOfIterations; currentIteration++)
 				{
 					std::vector<int> listOfInputArcs(listOfInputArc(rowIndex, link));
@@ -140,9 +150,18 @@ std::vector<std::vector<float>> getPageRank(int numOfIterations, std::vector<std
 					//for each outgoing arcs of this node
 					for (int currOutgoinArc = 0; currOutgoinArc < listOfInputArcs.size() - 1; currOutgoinArc++)
 					{
-						result[rowIndex][currentIteration] += result[listOfInputArcs[currOutgoinArc]][currentIteration - 1];
+						result[rowIndex][currentIteration] += (1 - 0.85) + 0.85 * (result[listOfInputArcs[currOutgoinArc]][currentIteration - 1] / numOfOutgoingArcs);
 					}
-
+					if (result[rowIndex][currentIteration] > maxRow)
+					{
+						maxRow = result[rowIndex][currentIteration];
+					}
+					if (result[rowIndex][currentIteration] < minRow)
+					{
+						minRow = result[rowIndex][currentIteration];
+					}
+					//normalization
+					result[rowIndex][currentIteration] = (result[rowIndex][currentIteration] - minRow) / (maxRow - minRow);
 				}
 			}
 			numOfIteration--;
@@ -172,7 +191,7 @@ std::vector<std::pair<int, float>> getRankings(int numOfIteration, std::vector<s
 	return result;
 }
 
-int calculateOutputArc(int colIndex, std::vector<std::vector<int>> link)
+int calculateInputArc(int colIndex, std::vector<std::vector<int>> link)
 {
 	int result = 0;
 
@@ -187,7 +206,7 @@ int calculateOutputArc(int colIndex, std::vector<std::vector<int>> link)
 	return result;
 }
 
-int calculateInputArc(int rowIndex, std::vector<std::vector<int>> link)
+int calculateOutputArc(int rowIndex, std::vector<std::vector<int>> link)
 {
 	int result = 0;
 
@@ -332,9 +351,9 @@ void readOneWordinFile(std::string pathBase)
 	std::vector<std::pair<int, float>> pageRanks = getRankings(5, getPageRank(10, getLinks(links)));
 	int numberOfFiles = getLinks(links).size();
 	int dbID = 1;
-	for (int currentFile = 0; currentFile < numberOfFiles; currentFile++)
+	for (int currentFile = 1; currentFile < numberOfFiles; currentFile++)
 	{
-		std::string file = filesDirectory + std::to_string(currentFile) + ".txt";
+		std::string file = filesDirectory + std::to_string(currentFile - 1) + ".txt";
 		//std::cout << currentFile << std::endl;
 		//std::cout << "-------------------------------------------------------------" << std::endl;
 		std::string STRING;
@@ -441,7 +460,7 @@ void insertInTableWordPage(int id_word, int page_id)
 	}
 }
 
-void insertInTablePage(int page_id, std::string url, std::string summary, int pr)
+void insertInTablePage(int page_id, std::string url, std::string summary, float pr)
 {
 	MYSQL *conn = nullptr;
 	conn = mysql_init(conn);
