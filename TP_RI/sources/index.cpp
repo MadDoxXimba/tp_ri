@@ -32,7 +32,7 @@ void IndexData()
 	}
 	*/
 
-	//debugMatrix_f(getPageRank(10, getLinks("C:\\Users\\E149268Y\\Desktop\\2018\\tp_ri-master\\Données\\data\\links.txt")));
+	//debugMatrix_f(getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt")));
 	debugVector_pair(getRankings(5, getPageRank(10, getLinks("c:\\Users\\Jonathan\\Desktop\\TP_RI\\Données\\data\\links.txt"))));
 
 	conn = mysql_init(conn);
@@ -141,28 +141,14 @@ std::vector<std::vector<float>> getPageRank(int numOfIterations, std::vector<std
 		{
 			for (int rowIndex = 0; rowIndex < link.size(); rowIndex++)
 			{
-				float maxRow = 0;
-				float minRow = 0;
-				for (int currentIteration = 1; currentIteration < numOfIterations; currentIteration++)
+				std::vector<int> listOfInputArcs(listOfInputArc(rowIndex, link));
+				int numOfOutgoingArcs = calculateOutputArc(rowIndex, link);
+				//for each outgoing arcs of this node
+				for (int currOutgoinArc = 0; currOutgoinArc < listOfInputArcs.size() - 1; currOutgoinArc++)
 				{
-					std::vector<int> listOfInputArcs(listOfInputArc(rowIndex, link));
-					int numOfOutgoingArcs = calculateOutputArc(rowIndex, link);
-					//for each outgoing arcs of this node
-					for (int currOutgoinArc = 0; currOutgoinArc < listOfInputArcs.size() - 1; currOutgoinArc++)
-					{
-						result[rowIndex][currentIteration] += (1 - 0.85) + 0.85 * (result[listOfInputArcs[currOutgoinArc]][currentIteration - 1] / numOfOutgoingArcs);
-					}
-					if (result[rowIndex][currentIteration] > maxRow)
-					{
-						maxRow = result[rowIndex][currentIteration];
-					}
-					if (result[rowIndex][currentIteration] < minRow)
-					{
-						minRow = result[rowIndex][currentIteration];
-					}
-					//normalization
-					result[rowIndex][currentIteration] = (result[rowIndex][currentIteration] - minRow) / (maxRow - minRow);
+					result[rowIndex][numOfIterations - numOfIteration + 1] += (result[listOfInputArcs[currOutgoinArc]][numOfIterations - numOfIteration] / numOfOutgoingArcs);
 				}
+				result[rowIndex][numOfIterations - numOfIteration + 1] += (1 - 0.85) + 0.85 * result[rowIndex][numOfIterations - numOfIteration + 1];
 			}
 			numOfIteration--;
 		}

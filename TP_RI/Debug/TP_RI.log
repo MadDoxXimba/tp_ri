@@ -1,16 +1,16 @@
 ﻿  index.cpp
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(123): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(142): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(151): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(153): warning C4244: '+=' : conversion de 'double' en 'float', perte possible de données
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(147): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(151): warning C4244: '+=' : conversion de 'double' en 'float', perte possible de données
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(170): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(184): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(198): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(213): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(199): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(214): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(226): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(228): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(238): warning C4018: '<' : incompatibilité signed/unsigned
 c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(240): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(242): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(252): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(254): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(370): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\jonathan\desktop\tp_ri\tp_ri\sources\index.cpp(356): warning C4018: '<' : incompatibilité signed/unsigned
   TP_RI.vcxproj -> C:\Users\Jonathan\Desktop\tp_ri\Debug\TP_RI.exe
   TP_RI.vcxproj -> C:\Users\Jonathan\Desktop\tp_ri\Debug\TP_RI.pdb (Full PDB)
